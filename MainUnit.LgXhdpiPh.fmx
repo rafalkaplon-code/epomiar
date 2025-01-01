@@ -1,0 +1,84 @@
+inherited MainForm_LgXhdpiPh: TMainForm_LgXhdpiPh
+  ClientHeight = 695
+  ClientWidth = 450
+  DesignerMasterStyle = 3
+  inherited GridPanelLayout3: TGridPanelLayout
+    Size.Width = 450.000000000000000000
+    Size.Height = 359.000000000000000000
+    ControlCollection = <
+      item
+        Column = 0
+        Control = StringGrid1
+        Row = 0
+      end>
+    inherited StringGrid1: TStringGrid
+      Size.Width = 121.032775878906300000
+      Size.Height = 179.500000000000000000
+      Viewport.Width = 121.000000000000000000
+      Viewport.Height = 179.500000000000000000
+      inherited ID: TStringColumn
+        HeaderSettings.TextSettings.Font.StyleExt = {00070000000000000004000000}
+        Size.Width = 29.000000000000000000
+      end
+      inherited LEN: TStringColumn
+        HeaderSettings.TextSettings.Font.StyleExt = {00070000000000000004000000}
+        Size.Width = 80.000000000000000000
+      end
+      inherited DIAM: TStringColumn
+        HeaderSettings.TextSettings.Font.StyleExt = {00070000000000000004000000}
+        Size.Width = 79.000000000000000000
+      end
+      inherited V: TStringColumn
+        HeaderSettings.TextSettings.Font.StyleExt = {00070000000000000004000000}
+        Size.Width = 93.000000000000000000
+      end
+    end
+  end
+  inherited GridPanelLayout1: TGridPanelLayout
+    Size.Width = 346.153839111328100000
+    ControlCollection = <
+      item
+        Column = 0
+        Control = edtL
+        Row = 0
+      end
+      item
+        Column = 1
+        Control = edtFi
+        Row = 0
+      end
+      item
+        Column = 0
+        Control = edtOut
+        Row = 1
+      end>
+    inherited edtL: TEdit
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+    end
+    inherited edtFi: TEdit
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      inherited Image1: TImage
+        MultiResBitmap.Height = 512
+        MultiResBitmap.Width = 512
+      end
+    end
+    inherited edtOut: TEdit
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+    end
+  end
+  inherited ToolBar1: TToolBar
+    Size.Width = 450.000000000000000000
+  end
+  inherited Label6: TLabel
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+  end
+  inherited GridPanelLayout2: TGridPanelLayout
+    Size.Width = 450.000000000000000000
+    inherited ComboBox2: TComboBox
+      Position.X = 179.125000000000000000
+    end
+    inherited ComboBox3: TComboBox
+      Position.X = 328.750000000000000000
+    end
+  end
+end

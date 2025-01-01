@@ -1,0 +1,12 @@
+*.dcu
+*.so
+*.~*
+*.log
+*.tvsconfig
+*.identcache
+__history/
+__recovery/
+Android64/Debug/
+Android32/Debug/
+Win64/
+Win32/
