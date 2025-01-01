@@ -82,7 +82,7 @@ begin
     try
       with FDatabaseManager.FQuery do
       begin
-        SQL.Text := 'INSERT OR REPLACE INTO AppSettings (name, value) VALUES (:name, :value)';
+        SQL.Text := 'INSERT OR REPLACE INTO AppSetting (name, value) VALUES (:name, :value)';
         ParamByName('name').AsString := SettingName;
         ParamByName('value').AsString := SettingValue;
         ExecSQL;
@@ -108,7 +108,7 @@ begin
     try
       with FDatabaseManager.FQuery do
       begin
-        SQL.Text := 'SELECT value FROM AppSettings WHERE name = :name';
+        SQL.Text := 'SELECT value FROM AppSetting WHERE name = :name';
         ParamByName('name').AsString := SettingName;
         Open;
 

@@ -230,6 +230,12 @@ end;
 procedure TDatabaseManager.InsertProduct(Length, Diameter, Width, Height, Volume: Real; Quantity, Pack_id, Tree_id, Quality_id : Integer);
 begin
     try
+
+        // Sprawdzenie, czy FQuery jest zainicjowane
+        if FQuery = nil then
+          raise Exception.Create('FQuery nie zainicjalizowane podczas dodawania produktu');
+
+
         FQuery.SQL.Text := 'INSERT INTO Product (length, diameter, width, height, volume, quantity, pack_id, tree_id, quality_id) VALUES (:L, :D, :W, :H, :V, :Q, :PID, :TID, :QID);';
         FQuery.ParamByName('L').AsFloat := Length;
         FQuery.ParamByName('D').AsFloat := Diameter;
@@ -237,10 +243,27 @@ begin
         FQuery.ParamByName('H').AsFloat := Height;
         FQuery.ParamByName('V').AsFloat := Volume;
         FQuery.ParamByName('Q').AsInteger := Quantity;
+
+
         FQuery.ParamByName('PID').AsInteger := Pack_id;
+        if Pack_id = 0 then
+          FQuery.ParamByName('PID').Clear;
+
+
         FQuery.ParamByName('TID').AsInteger := Tree_id;
+        if Tree_id = 0 then
+          FQuery.ParamByName('TID').Clear;
+
+
         FQuery.ParamByName('QID').AsInteger := Quality_id;
+        if Quality_id = 0 then
+          FQuery.ParamByName('QID').Clear;
+
+
+
+
         FQuery.ExecSQL;
+
     except
         on E: Exception do
           ShowMessage('B³¹d podczas dodawania produktu: ' + E.Message);

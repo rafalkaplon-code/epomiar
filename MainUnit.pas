@@ -105,9 +105,12 @@ type
     procedure FormCreate(Sender: TObject);
     procedure Edit1Typing(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
 
 
   private
+    DatabaseManager: TDatabaseManager;
+
     DataSource: string;
     procedure CheckVirtualKeyboard;
     procedure GetCurrentInputMethod;
@@ -139,9 +142,6 @@ implementation
 
 (* Stworzenie formularza *)
 procedure TMainForm.FormCreate(Sender: TObject);
-var
-  DatabaseManager: TDatabaseManager;
-
 begin
   //Naprawa komponentów na formularzu
   edtOut.Parent := nil;
@@ -177,7 +177,7 @@ begin
     on E: Exception do
     begin
       ShowMessage('B³¹d inicjalizacji: ' + E.Message);
-      Application.Terminate; // Zakoñcz aplikacjê w razie krytycznego b³êdu
+     // Application.Terminate; // Zakoñcz aplikacjê w razie krytycznego b³êdu
     end;
   end;
 end;
@@ -188,9 +188,7 @@ end;
 (* Niszczenie formularza *)
 procedure TMainForm.FormDestroy(Sender: TObject);
 begin
-  // Uwalnianie bazy danych
-  //FDQuery1.Free;
-  //FDConnection1.Free;
+  DatabaseManager.Free;
 end;
 
 
@@ -305,12 +303,45 @@ end;
 
 
 (* Obliczenie wartoœci wed³ug wybranej metody *)
+procedure TMainForm.Button1Click(Sender: TObject);
+var
+  Length, Diameter, Width, Height, Volume: Real;
+  Quantity, Pack_id, Tree_id, Quality_id: Integer;
+
+begin
+  // Przyk³adowe dane (mo¿esz je zast¹piæ danymi z pól edycyjnych lub innych Ÿróde³)
+  Length := 10.5;
+  Diameter := 5.2;
+  Width := 7.0;
+  Height := 12.3;
+  Volume := 150.25;
+  Quantity := 100;
+  Pack_id := 0;
+  Tree_id := 0;
+  Quality_id := 0;
+
+
+  try
+    DatabaseManager.InsertProduct(Length, Diameter, Width, Height, Volume, Quantity, Pack_id, Tree_id, Quality_id);
+  finally
+    DatabaseManager.Free;  // Zwolnienie pamiêci
+  end;
+
+
+end;
+
+
+
+
 function TMainForm.CalcValue(): Real;
 var
   L, Fi, factorL, factorFi: Real;
 const
   PI = 3.14159265358979323846;
 begin
+
+  L := 0.0;
+  Fi := 0.0;
 
   // konwersja do Real
   if (edtL.Text <> '') and (edtFi.Text <> '') then

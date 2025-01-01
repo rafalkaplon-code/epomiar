@@ -3,18 +3,19 @@ object MainForm: TMainForm
   Top = 0
   Caption = 'MainForm'
   ClientHeight = 674
-  ClientWidth = 378
+  ClientWidth = 375
+  Position = Designed
   StyleBook = StyleBook1
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  DesignerMasterStyle = 0
+  DesignerMasterStyle = 3
   object GridPanelLayout3: TGridPanelLayout
     Align = Client
     Margins.Top = 50.000000000000000000
-    Size.Width = 378.000000000000000000
+    Size.Width = 375.000000000000000000
     Size.Height = 338.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 10
@@ -51,7 +52,7 @@ object MainForm: TMainForm
       Align = Client
       CanFocus = True
       ClipChildren = True
-      Size.Width = 288.000000000000000000
+      Size.Width = 285.000000000000000000
       Size.Height = 338.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = 'StringGrid1Style1'
@@ -60,7 +61,7 @@ object MainForm: TMainForm
       TabOrder = 5
       RowCount = 1
       Options = [Editing, ColLines, RowLines, RowSelect, Tabs, Header, AutoDisplacement]
-      Viewport.Width = 288.000000000000000000
+      Viewport.Width = 285.000000000000000000
       Viewport.Height = 306.000000000000000000
       object ID: TStringColumn
         Header = '#'
@@ -98,7 +99,7 @@ object MainForm: TMainForm
     Position.Y = 48.000000000000000000
     Scale.X = 1.299999952316284000
     Scale.Y = 1.299999952316284000
-    Size.Width = 290.769226074218800000
+    Size.Width = 288.461547851562500000
     Size.Height = 130.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
@@ -155,7 +156,7 @@ object MainForm: TMainForm
         Position.X = 64.000000000000000000
         Position.Y = 8.000000000000000000
         Size.Width = 25.000000000000000000
-        Size.Height = 16.000000000000000000
+        Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
         TextSettings.FontColor = claDimgray
         Text = 'm'
@@ -761,7 +762,7 @@ object MainForm: TMainForm
         Position.X = 79.000000000000000000
         Position.Y = 7.000000000000000000
         Size.Width = 31.000000000000000000
-        Size.Height = 16.000000000000000000
+        Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
         TextSettings.FontColor = claDimgray
         Text = 'cm'
@@ -788,7 +789,7 @@ object MainForm: TMainForm
         Position.X = 123.000000000000000000
         Position.Y = 7.000000000000000000
         Size.Width = 31.000000000000000000
-        Size.Height = 16.000000000000000000
+        Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
         TextSettings.FontColor = claDimgray
         Text = 'm'#178
@@ -800,7 +801,7 @@ object MainForm: TMainForm
         Position.X = -31.000000000000000000
         Position.Y = 8.000000000000000000
         Size.Width = 28.000000000000000000
-        Size.Height = 16.000000000000000000
+        Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
         TextSettings.FontColor = claDimgray
         TextSettings.HorzAlign = Trailing
@@ -812,7 +813,7 @@ object MainForm: TMainForm
   end
   object ToolBar1: TToolBar
     Align = MostTop
-    Size.Width = 378.000000000000000000
+    Size.Width = 375.000000000000000000
     Size.Height = 48.000000000000000000
     Size.PlatformDefault = False
     StyleLookup = 'toolbarstyle'
@@ -833,7 +834,7 @@ object MainForm: TMainForm
     Position.X = 8.000000000000000000
     Position.Y = 301.000000000000000000
     Size.Width = 76.000000000000000000
-    Size.Height = 16.000000000000000000
+    Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
     TextSettings.FontColor = claDimgray
     TextSettings.VertAlign = Trailing
@@ -845,8 +846,8 @@ object MainForm: TMainForm
     StyledSettings = [Family, Size]
     Position.X = 89.000000000000000000
     Position.Y = 301.000000000000000000
-    Size.Width = 109.000000000000000000
-    Size.Height = 16.000000000000000000
+    Size.Width = 101.000000000000000000
+    Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
     TextSettings.Font.StyleExt = {00070000000000000004000000}
     TextSettings.FontColor = claDimgray
@@ -857,7 +858,7 @@ object MainForm: TMainForm
   object GridPanelLayout2: TGridPanelLayout
     Align = Top
     Position.Y = 217.000000000000000000
-    Size.Width = 378.000000000000000000
+    Size.Width = 375.000000000000000000
     Size.Height = 69.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 6
@@ -912,7 +913,7 @@ object MainForm: TMainForm
         'brzoza'
         'd'#261'b')
       ItemIndex = 3
-      Position.X = 142.944992065429700000
+      Position.X = 141.437500000000000000
       Position.Y = 18.500000000000000000
       Size.Width = 94.000000000000000000
       Size.Height = 32.000000000000000000
@@ -927,7 +928,7 @@ object MainForm: TMainForm
         'brzoza'
         'd'#261'b')
       ItemIndex = 0
-      Position.X = 268.630004882812500000
+      Position.X = 266.125000000000000000
       Position.Y = 18.500000000000000000
       Size.Width = 94.000000000000000000
       Size.Height = 32.000000000000000000
@@ -1672,7 +1673,7 @@ object MainForm: TMainForm
   object Button1: TButton
     Anchors = [akTop, akRight]
     StyledSettings = [Family, Style, FontColor]
-    Position.X = 300.000000000000000000
+    Position.X = 297.000000000000000000
     Position.Y = 295.000000000000000000
     Size.Width = 70.000000000000000000
     Size.Height = 70.000000000000000000
@@ -1681,11 +1682,12 @@ object MainForm: TMainForm
     Text = '+'
     TextSettings.Font.Size = 48.000000000000000000
     TextSettings.Trimming = None
+    OnClick = Button1Click
   end
   object Button2: TButton
     Anchors = [akTop, akRight]
     StyledSettings = [Family, Style, FontColor]
-    Position.X = 300.000000000000000000
+    Position.X = 297.000000000000000000
     Position.Y = 373.000000000000000000
     Size.Width = 70.000000000000000000
     Size.Height = 70.000000000000000000
@@ -3193,24 +3195,5 @@ object MainForm: TMainForm
       end>
     Left = 320
     Top = 524
-  end
-  object FDQuery1: TFDQuery
-    Left = 233
-    Top = 467
-  end
-  object FDConnection1: TFDConnection
-    Params.Strings = (
-      'DriverID=SQLite')
-    Left = 231
-    Top = 398
-  end
-  object FDPhysSQLiteDriverLink1: TFDPhysSQLiteDriverLink
-    Left = 232
-    Top = 539
-  end
-  object FDGUIxWaitCursor1: TFDGUIxWaitCursor
-    Provider = 'FMX'
-    Left = 232
-    Top = 602
   end
 end
