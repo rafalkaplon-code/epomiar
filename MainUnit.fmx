@@ -3,7 +3,7 @@ object MainForm: TMainForm
   Top = 0
   Caption = 'MainForm'
   ClientHeight = 674
-  ClientWidth = 375
+  ClientWidth = 743
   Position = Designed
   StyleBook = StyleBook1
   FormFactor.Width = 320
@@ -15,7 +15,7 @@ object MainForm: TMainForm
   object GridPanelLayout3: TGridPanelLayout
     Align = Client
     Margins.Top = 50.000000000000000000
-    Size.Width = 375.000000000000000000
+    Size.Width = 743.000000000000000000
     Size.Height = 338.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 10
@@ -37,7 +37,7 @@ object MainForm: TMainForm
       item
         Column = 0
         ColumnSpan = 3
-        Control = StringGrid1
+        Control = ListView1
         Row = 0
         RowSpan = 2
       end>
@@ -48,50 +48,18 @@ object MainForm: TMainForm
       item
         Value = 50.000000000000000000
       end>
-    object StringGrid1: TStringGrid
+    OnClick = GridPanelLayout3Click
+    object ListView1: TListView
+      ItemAppearanceClassName = 'TListItemAppearance'
+      ItemEditAppearanceClassName = 'TListItemShowCheckAppearance'
+      HeaderAppearanceClassName = 'TListHeaderObjects'
+      FooterAppearanceClassName = 'TListHeaderObjects'
       Align = Client
-      CanFocus = True
-      ClipChildren = True
-      Size.Width = 285.000000000000000000
+      Size.Width = 653.000061035156300000
       Size.Height = 338.000000000000000000
       Size.PlatformDefault = False
-      StyleLookup = 'StringGrid1Style1'
-      TextSettings.Font.Size = 11.000000000000000000
-      StyledSettings = [Family, Style, FontColor]
       TabOrder = 5
-      RowCount = 1
-      Options = [Editing, ColLines, RowLines, RowSelect, Tabs, Header, AutoDisplacement]
-      Viewport.Width = 285.000000000000000000
-      Viewport.Height = 306.000000000000000000
-      object ID: TStringColumn
-        Header = '#'
-        HeaderSettings.TextSettings.Font.StyleExt = {00070000000000000004000000}
-        HeaderSettings.TextSettings.WordWrap = False
-        HeaderSettings.TextSettings.HorzAlign = Center
-        ReadOnly = True
-        Size.Width = 29.000000000000000000
-      end
-      object LEN: TStringColumn
-        Header = 'D'#322'ugo'#347#263
-        HeaderSettings.TextSettings.Font.StyleExt = {00070000000000000004000000}
-        HeaderSettings.TextSettings.WordWrap = False
-        HeaderSettings.TextSettings.HorzAlign = Center
-        Size.Width = 80.000000000000000000
-      end
-      object DIAM: TStringColumn
-        Header = 'Szeroko'#347#263
-        HeaderSettings.TextSettings.Font.StyleExt = {00070000000000000004000000}
-        HeaderSettings.TextSettings.WordWrap = False
-        HeaderSettings.TextSettings.HorzAlign = Center
-        Size.Width = 79.000000000000000000
-      end
-      object V: TStringColumn
-        Header = 'Obj'#281'to'#347#263
-        HeaderSettings.TextSettings.Font.StyleExt = {00070000000000000004000000}
-        HeaderSettings.TextSettings.WordWrap = False
-        HeaderSettings.TextSettings.HorzAlign = Center
-        Size.Width = 93.000000000000000000
-      end
+      AutoTapScroll = True
     end
   end
   object GridPanelLayout1: TGridPanelLayout
@@ -99,7 +67,7 @@ object MainForm: TMainForm
     Position.Y = 48.000000000000000000
     Scale.X = 1.299999952316284000
     Scale.Y = 1.299999952316284000
-    Size.Width = 288.461547851562500000
+    Size.Width = 571.538452148437500000
     Size.Height = 130.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
@@ -749,11 +717,11 @@ object MainForm: TMainForm
               4AF146220000000049454E44AE426082}
             FileName = 'C:\Users\Automatyk 0\Desktop\icon pack\caliper5.png'
           end>
-        Position.X = -23.000000000000000000
-        Position.Y = -2.000000000000000000
-        RotationAngle = 45.000000000000000000
-        Size.Width = 25.000000000000000000
-        Size.Height = 32.000000000000000000
+        Position.X = 16.000000000000000000
+        Position.Y = 22.000000000000000000
+        RotationAngle = 135.000000000000000000
+        Size.Width = 50.000000000000000000
+        Size.Height = 45.000000000000000000
         Size.PlatformDefault = False
       end
       object Label2: TLabel
@@ -813,7 +781,7 @@ object MainForm: TMainForm
   end
   object ToolBar1: TToolBar
     Align = MostTop
-    Size.Width = 375.000000000000000000
+    Size.Width = 743.000000000000000000
     Size.Height = 48.000000000000000000
     Size.PlatformDefault = False
     StyleLookup = 'toolbarstyle'
@@ -858,7 +826,7 @@ object MainForm: TMainForm
   object GridPanelLayout2: TGridPanelLayout
     Align = Top
     Position.Y = 217.000000000000000000
-    Size.Width = 375.000000000000000000
+    Size.Width = 743.000000000000000000
     Size.Height = 69.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 6
@@ -894,43 +862,25 @@ object MainForm: TMainForm
       end>
     object ComboBox1: TComboBox
       Align = Center
-      Items.Strings = (
-        'gatunek'
-        'buk'
-        'brzoza'
-        'd'#261'b')
-      ItemIndex = 0
-      Size.Width = 94.000000000000000000
+      Size.Width = 130.000000000000000000
       Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 2
     end
     object ComboBox2: TComboBox
       Anchors = []
-      Items.Strings = (
-        'gatunek'
-        'buk'
-        'brzoza'
-        'd'#261'b')
-      ItemIndex = 3
-      Position.X = 141.437500000000000000
+      Position.X = 303.857482910156300000
       Position.Y = 18.500000000000000000
-      Size.Width = 94.000000000000000000
+      Size.Width = 139.000000000000000000
       Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
     end
     object ComboBox3: TComboBox
       Anchors = []
-      Items.Strings = (
-        'gatunek'
-        'buk'
-        'brzoza'
-        'd'#261'b')
-      ItemIndex = 0
-      Position.X = 266.125000000000000000
+      Position.X = 558.405029296875000000
       Position.Y = 18.500000000000000000
-      Size.Width = 94.000000000000000000
+      Size.Width = 124.000000000000000000
       Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
@@ -1673,7 +1623,7 @@ object MainForm: TMainForm
   object Button1: TButton
     Anchors = [akTop, akRight]
     StyledSettings = [Family, Style, FontColor]
-    Position.X = 297.000000000000000000
+    Position.X = 665.000000000000000000
     Position.Y = 295.000000000000000000
     Size.Width = 70.000000000000000000
     Size.Height = 70.000000000000000000
@@ -1687,7 +1637,7 @@ object MainForm: TMainForm
   object Button2: TButton
     Anchors = [akTop, akRight]
     StyledSettings = [Family, Style, FontColor]
-    Position.X = 297.000000000000000000
+    Position.X = 665.000000000000000000
     Position.Y = 373.000000000000000000
     Size.Width = 70.000000000000000000
     Size.Height = 70.000000000000000000
@@ -1696,6 +1646,7 @@ object MainForm: TMainForm
     Text = '-'
     TextSettings.Font.Size = 72.000000000000000000
     TextSettings.Trimming = None
+    OnClick = Button2Click
   end
   object ImageList1: TImageList
     Source = <

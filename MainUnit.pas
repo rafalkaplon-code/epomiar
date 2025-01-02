@@ -66,7 +66,8 @@ uses
   System.IOUtils,
 
   DataBaseManagerUnit, // Modu³ z mened¿erem bazy danych
-  AppSettingsUnit;     // Modu³ z ustawieniami aplikacji
+  AppSettingsUnit, FMX.ListView.Types, FMX.ListView.Appearances,
+  FMX.ListView.Adapters.Base, FMX.ListView;     // Modu³ z ustawieniami aplikacji
 
 
 
@@ -82,11 +83,6 @@ type
     Label4: TLabel;
     ToolBar1: TToolBar;
     Button1: TButton;
-    StringGrid1: TStringGrid;
-    ID: TStringColumn;
-    LEN: TStringColumn;
-    DIAM: TStringColumn;
-    V: TStringColumn;
     Label5: TLabel;
     Label6: TLabel;
     StyleBook1: TStyleBook;
@@ -99,6 +95,7 @@ type
     ComboBox3: TComboBox;
     GridPanelLayout3: TGridPanelLayout;
     Image1: TImage;
+    ListView1: TListView;
 
     function CalcValue(): Real;
     procedure edtFiChangeTracking(Sender: TObject);
@@ -106,12 +103,15 @@ type
     procedure Edit1Typing(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure StringGrid1ViewportPositionChange(Sender: TObject; const OldViewportPosition, NewViewportPosition: TPointF; const ContentSizeChanged: Boolean);
+    procedure GridPanelLayout3Click(Sender: TObject);
 
 
   private
     DatabaseManager: TDatabaseManager;
-
     DataSource: string;
+
     procedure CheckVirtualKeyboard;
     procedure GetCurrentInputMethod;
     procedure CheckInputMethod;
@@ -159,6 +159,7 @@ begin
   Button2.Position.X := MainForm.Width - Button2.Width - 10;
 
 
+
   try
     // Tworzenie i konfiguracja mened¿era bazy danych
     DatabaseManager := TDatabaseManager.Create;
@@ -172,6 +173,17 @@ begin
 
     // Test odczytu ustawienia
     ShowMessage('Aktualny jêzyk: ' + TAppSettings.Instance.GetSetting('Language', 'EN'));
+
+    // Za³adowanie tabeli
+    //DatabaseManager.LoadProducts(StringGrid1);
+
+    // Konfiguracja StringGrid
+    StringGrid1.OnViewportPositionChange := StringGrid1ViewportPositionChange;
+    StringGrid1.RowCount := 0; // Start bez wierszy
+
+    // Za³aduj pierwsz¹ partiê danych
+    DatabaseManager.LoadProductsLazy(StringGrid1, 50);
+
 
   except
     on E: Exception do
@@ -269,17 +281,23 @@ begin
 end;
 
 
+
+procedure TMainForm.GridPanelLayout3Click(Sender: TObject);
+begin
+
+end;
+
 (*  *)
 procedure TMainForm.CheckInputMethod;
 begin
-  GetCurrentInputMethod;
+    GetCurrentInputMethod;
 end;
 
 
 (*  *)
 procedure TMainForm.Edit1Typing(Sender: TObject);
 begin
-      CheckInputMethod;
+    CheckInputMethod;
 end;
 
 
@@ -324,11 +342,24 @@ begin
   try
     DatabaseManager.InsertProduct(Length, Diameter, Width, Height, Volume, Quantity, Pack_id, Tree_id, Quality_id);
   finally
-    DatabaseManager.Free;  // Zwolnienie pamiêci
+    DatabaseManager.LoadProducts(StringGrid1);
   end;
 
-
 end;
+
+
+
+
+
+
+
+
+(*  *)
+procedure TMainForm.Button2Click(Sender: TObject);
+begin
+  DatabaseManager.LoadProducts(StringGrid1);
+end;
+
 
 
 
@@ -386,6 +417,18 @@ begin
 end;
 
 
+
+
+
+(* Obs³uga przewijania i ³adowania danych *)
+procedure TMainForm.StringGrid1ViewportPositionChange(Sender: TObject; const OldViewportPosition, NewViewportPosition: TPointF; const ContentSizeChanged: Boolean);
+begin
+  // Sprawdzenie, czy u¿ytkownik przewin¹³ na sam dó³
+  if (NewViewportPosition.Y + StringGrid1.Height >= StringGrid1.ContentBounds.Height) then
+  begin
+    DatabaseManager.LoadProductsLazy(StringGrid1, 25); // Za³aduj kolejne 50 rekordów
+  end;
+end;
 
 
 end.

@@ -1,29 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.650,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\DataBaseUnit.pas=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\DataBaseManagerUnit.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.124,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\Unit1.pas=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\DataBaseUnit.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.809,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.3\MainUnit.pas=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.4\MainUnit.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.647,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.3\MainUnit.pas=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.887,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.6\AppSettingsUnit.pas=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\AppSettingsUnit.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.241,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.6\MainUnit.fmx=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\MainUnit.fmx</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.615,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.6\DataBaseManagerUnit.pas=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\DataBaseManagerUnit.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.454,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\MainUnit.fmx=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.4\MainUnit.fmx</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.650,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\DataBaseUnit.pas=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\DataBaseManagerUnit.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.724,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\ePomiar.dproj=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.4\ePomiar.dproj</Transaction>
     <Transaction>1899.12.30 00:00:00.000.181,=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.328,=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.724,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\ePomiar.dproj=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.4\ePomiar.dproj</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.454,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\MainUnit.fmx=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.4\MainUnit.fmx</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.744,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\AppSettings.pas=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\AppSettingsUnit.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.890,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\Unit1.pas=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\AppSettings.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.647,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.3\MainUnit.pas=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.647,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.3\MainUnit.fmx=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Unit1.fmx</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.744,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\AppSettings.pas=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\AppSettingsUnit.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.241,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.6\MainUnit.pas=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\MainUnit.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.454,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\MainUnit.pas=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.4\MainUnit.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.667,=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.809,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.3\MainUnit.pas=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.4\MainUnit.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.615,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.6\ePomiar.dproj=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\ePomiar.dproj</Transaction>
     <Transaction>1899.12.30 00:00:00.000.751,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.3\ePomiar.dproj=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
     <Transaction>1899.12.30 00:00:00.000.820,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.3\ePomiar.dproj=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.4\ePomiar.dproj</Transaction>
     <Transaction>1899.12.30 00:00:00.000.809,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.3\MainUnit.fmx=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.4\MainUnit.fmx</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.647,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.3\MainUnit.fmx=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Unit1.fmx</Transaction>
-    <Transaction>2025.01.01 19:47:51.615,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.6\ePomiar.dproj=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\ePomiar.dproj</Transaction>
-    <Transaction>2025.01.01 19:48:06.241,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.6\MainUnit.pas=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\MainUnit.pas</Transaction>
-    <Transaction>2025.01.01 19:48:06.241,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.6\MainUnit.fmx=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\MainUnit.fmx</Transaction>
-    <Transaction>2025.01.01 19:48:23.887,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.6\AppSettingsUnit.pas=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\AppSettingsUnit.pas</Transaction>
-    <Transaction>2025.01.01 19:48:34.615,C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.6\DataBaseManagerUnit.pas=C:\Users\Automatyk 0\Documents\Embarcadero\Studio\Projects\Projekt ePomiar\v0.5\DataBaseManagerUnit.pas</Transaction>
   </Transactions>
 	<ActiveMobileDevice>
-		<NoProfile Android="" Android64=""/>
+		<NoProfile Android="" Android64="3B230DLJG001HV"/>
 	</ActiveMobileDevice>
 </BorlandProject>

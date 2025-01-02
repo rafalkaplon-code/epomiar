@@ -8,30 +8,12 @@ inherited MainForm_LgXhdpiPh: TMainForm_LgXhdpiPh
     ControlCollection = <
       item
         Column = 0
-        Control = StringGrid1
+        Control = ListView1
         Row = 0
       end>
-    inherited StringGrid1: TStringGrid
+    inherited ListView1: TListView
       Size.Width = 121.032775878906300000
       Size.Height = 179.500000000000000000
-      Viewport.Width = 121.000000000000000000
-      Viewport.Height = 179.500000000000000000
-      inherited ID: TStringColumn
-        HeaderSettings.TextSettings.Font.StyleExt = {00070000000000000004000000}
-        Size.Width = 29.000000000000000000
-      end
-      inherited LEN: TStringColumn
-        HeaderSettings.TextSettings.Font.StyleExt = {00070000000000000004000000}
-        Size.Width = 80.000000000000000000
-      end
-      inherited DIAM: TStringColumn
-        HeaderSettings.TextSettings.Font.StyleExt = {00070000000000000004000000}
-        Size.Width = 79.000000000000000000
-      end
-      inherited V: TStringColumn
-        HeaderSettings.TextSettings.Font.StyleExt = {00070000000000000004000000}
-        Size.Width = 93.000000000000000000
-      end
     end
   end
   inherited GridPanelLayout1: TGridPanelLayout
@@ -75,10 +57,10 @@ inherited MainForm_LgXhdpiPh: TMainForm_LgXhdpiPh
   inherited GridPanelLayout2: TGridPanelLayout
     Size.Width = 450.000000000000000000
     inherited ComboBox2: TComboBox
-      Position.X = 179.125000000000000000
+      Position.X = 156.625000000000000000
     end
     inherited ComboBox3: TComboBox
-      Position.X = 328.750000000000000000
+      Position.X = 313.750000000000000000
     end
   end
 end

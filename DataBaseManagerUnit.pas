@@ -37,8 +37,9 @@ type
     constructor Create;
     destructor Destroy; override;
     procedure ConnectToDatabase;
-    procedure LoadProducts(Grid: TStringGrid);
     procedure InsertProduct(Length, Diameter, Width, Height, Volume: Real; Quantity, Pack_id, Tree_id, Quality_id : Integer);
+    procedure LoadProducts(Grid: TStringGrid);
+    procedure LoadProductsLazy(Grid: TStringGrid; PageSize: Integer);
   end;
 
 
@@ -114,19 +115,18 @@ begin
                   'CREATE TABLE IF NOT EXISTS Product (' +
                   'id INTEGER PRIMARY KEY AUTOINCREMENT, ' +
                   'timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, ' +
-                  'length REAL, ' +
-                  'diameter REAL, ' +
-                  'width REAL, ' +
-                  'height REAL, ' +
-                  'quantity INTEGER, ' +
-                  'volume REAL, ' +
-                  'pack_id INTEGER, ' +
-                  'tree_id INTEGER, ' +
-                  'quality_id INTEGER, ' +
-                  // Deklaracje kluczy obcych
-                  'FOREIGN KEY (pack_id) REFERENCES Pack(id), ' +
-                  'FOREIGN KEY (tree_id) REFERENCES Tree(id), ' +
-                  'FOREIGN KEY (quality_id) REFERENCES Quality(id) );';
+                  'length REAL NOT NULL, ' +
+                  'diameter REAL NULL, ' +
+                  'width REAL NULL, ' +
+                  'height REAL NULL, ' +
+                  'quantity INTEGER NULL, ' +
+                  'volume REAL NULL, ' +
+                  'pack_id INTEGER DEFAULT NULL, ' +
+                  'tree_id INTEGER DEFAULT NULL, ' +
+                  'quality_id INTEGER DEFAULT NULL, ' +
+                  'FOREIGN KEY (pack_id) REFERENCES Pack(id) ON DELETE SET NULL, ' +
+                  'FOREIGN KEY (tree_id) REFERENCES Tree(id) ON DELETE SET NULL, ' +
+                  'FOREIGN KEY (quality_id) REFERENCES Quality(id) ON DELETE SET NULL );';
                 FQuery.ExecSQL;
 
                 // Tworzenie tabeli Pack - paczki materia³u
@@ -190,7 +190,7 @@ begin
           Grid.ClearColumns;
 
           // Tworzenie kolumn na podstawie pól zapytania
-          for j := 0 to FQuery.FieldCount - 1 do
+          for j := 0 to FQuery.FieldCount -1 do
             begin
               Col := TStringColumn.Create(Grid);
               Col.Header := FQuery.Fields[j].FieldName; // Nazwa kolumny
@@ -201,10 +201,10 @@ begin
           Grid.RowCount := FQuery.RecordCount + 1; // Nag³ówek + dane
 
           // Wype³nianie danych
-          i := 1; // Pierwszy wiersz na dane, zerowy na nag³ówki
+          i := 0; // Pierwszy wiersz na dane, zerowy na nag³ówki
           while not FQuery.Eof do
             begin
-                for j := 0 to FQuery.FieldCount - 1 do
+                for j := 0 to FQuery.FieldCount -1 do
                 begin
                   Field := FQuery.Fields[j];
                   Grid.Cells[j, i] := Field.AsString; // Wype³nienie komórki
@@ -226,6 +226,73 @@ end;
 
 
 
+
+(* Wirtualizacja (Lazy Loading) w TStringGrid dla FMX *)
+procedure TDatabaseManager.LoadProductsLazy(Grid: TStringGrid; PageSize: Integer);
+var
+  i, j: Integer;
+  Field: TField;
+  Col: TStringColumn;
+begin
+  try
+    // Jeœli nie ma jeszcze kolumn, dodaj je dynamicznie
+
+
+    //if Grid.ColumnCount = 0 then
+    begin
+      FQuery.SQL.Text := 'SELECT * FROM Product LIMIT 1;'; // Pobierz tylko jedn¹ liniê, aby okreœliæ strukturê
+      FQuery.Open;
+
+      // Usuniêcie istniej¹cych kolumn
+      Grid.ClearColumns;
+      for j := 0 to FQuery.FieldCount - 1 do
+      begin
+        Col := TStringColumn.Create(Grid);
+        Col.Header := FQuery.Fields[j].FieldName; // Nag³ówek kolumny
+        Grid.AddObject(Col);
+      end;
+      FQuery.Close;
+    end;
+
+    // Zapytanie z paginacj¹
+    FQuery.SQL.Text := Format(
+      'SELECT * FROM Product ORDER BY timestamp DESC LIMIT %d OFFSET %d;',
+      [PageSize, Grid.RowCount]
+    );
+    FQuery.Open;
+
+    // Dodanie nowych wierszy do StringGrid
+    while not FQuery.Eof do
+    begin
+      Grid.RowCount := Grid.RowCount + 1;
+      for j := 0 to FQuery.FieldCount - 1 do
+      begin
+        // Zabezpieczenie przed indeksem poza zakresem kolumny
+        if j < Grid.ColumnCount then
+        begin
+          Field := FQuery.Fields[j];
+          Grid.Cells[j, Grid.RowCount - 1] := Field.AsString;
+        end;
+      end;
+      FQuery.Next;
+    end;
+
+    FQuery.Close;
+  except
+    on E: Exception do
+      ShowMessage('B³¹d podczas ³adowania produktów: ' + E.Message);
+  end;
+end;
+
+
+
+
+
+
+
+
+
+
 (* Dodawanie nowego produktu *)
 procedure TDatabaseManager.InsertProduct(Length, Diameter, Width, Height, Volume: Real; Quantity, Pack_id, Tree_id, Quality_id : Integer);
 begin
@@ -235,6 +302,9 @@ begin
         if FQuery = nil then
           raise Exception.Create('FQuery nie zainicjalizowane podczas dodawania produktu');
 
+        // Sprawdzenie, czy FQuery ma po³¹czenie
+        if FQuery.Connection = nil then
+          raise Exception.Create('Brak po³¹czenia w FQuery podczas dodawania produktu');
 
         FQuery.SQL.Text := 'INSERT INTO Product (length, diameter, width, height, volume, quantity, pack_id, tree_id, quality_id) VALUES (:L, :D, :W, :H, :V, :Q, :PID, :TID, :QID);';
         FQuery.ParamByName('L').AsFloat := Length;
@@ -245,22 +315,26 @@ begin
         FQuery.ParamByName('Q').AsInteger := Quantity;
 
 
-        FQuery.ParamByName('PID').AsInteger := Pack_id;
-        if Pack_id = 0 then
+        // Ustawienie typu i wartoœci dla parametru :PID
+        FQuery.ParamByName('PID').DataType := ftInteger;
+        if (Pack_id > 0) then
+          FQuery.ParamByName('PID').AsInteger := Pack_id
+        else
           FQuery.ParamByName('PID').Clear;
 
-
-        FQuery.ParamByName('TID').AsInteger := Tree_id;
-        if Tree_id = 0 then
+        // Ustawienie typu i wartoœci dla parametru :TID
+        FQuery.ParamByName('TID').DataType := ftInteger;
+        if (Tree_id > 0) then
+          FQuery.ParamByName('TID').AsInteger := Tree_id
+        else
           FQuery.ParamByName('TID').Clear;
 
-
-        FQuery.ParamByName('QID').AsInteger := Quality_id;
-        if Quality_id = 0 then
+        // Ustawienie typu i wartoœci dla parametru :QID
+        FQuery.ParamByName('QID').DataType := ftInteger;
+        if (Quality_id > 0) then
+          FQuery.ParamByName('QID').AsInteger := Quality_id
+        else
           FQuery.ParamByName('QID').Clear;
-
-
-
 
         FQuery.ExecSQL;
 
