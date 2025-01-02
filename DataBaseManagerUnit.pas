@@ -183,7 +183,7 @@ var
 begin
   try
       try
-          FQuery.SQL.Text := 'SELECT * FROM Product ORDER BY timestamp DESC;';
+          FQuery.SQL.Text := 'SELECT * FROM Product ORDER BY timestamp DESC LIMIT 500;';
           FQuery.Open;
 
           // Usuniêcie istniej¹cych kolumn
@@ -237,20 +237,22 @@ begin
   try
     // Jeœli nie ma jeszcze kolumn, dodaj je dynamicznie
 
-
+    Grid.ClearColumns;
     //if Grid.ColumnCount = 0 then
     begin
       FQuery.SQL.Text := 'SELECT * FROM Product LIMIT 1;'; // Pobierz tylko jedn¹ liniê, aby okreœliæ strukturê
       FQuery.Open;
 
       // Usuniêcie istniej¹cych kolumn
-      Grid.ClearColumns;
+
       for j := 0 to FQuery.FieldCount - 1 do
       begin
         Col := TStringColumn.Create(Grid);
         Col.Header := FQuery.Fields[j].FieldName; // Nag³ówek kolumny
+        Col.Width := 100;
         Grid.AddObject(Col);
       end;
+      Grid.Columns[0].Width := 50;
       FQuery.Close;
     end;
 

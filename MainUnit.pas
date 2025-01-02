@@ -94,8 +94,9 @@ type
     ComboBox2: TComboBox;
     ComboBox3: TComboBox;
     GridPanelLayout3: TGridPanelLayout;
+    Button3: TButton;
+    StringGrid1: TStringGrid;
     Image1: TImage;
-    ListView1: TListView;
 
     function CalcValue(): Real;
     procedure edtFiChangeTracking(Sender: TObject);
@@ -151,12 +152,14 @@ begin
   StringGrid1.Parent := nil;
   StringGrid1.Parent := GridPanelLayout3;
   GridPanelLayout3.ControlCollection[0].ColumnSpan := 3;
-  GridPanelLayout3.ControlCollection[0].RowSpan := 2;
+  GridPanelLayout3.ControlCollection[0].RowSpan := 3;
 
   Button1.Anchors := [TAnchorKind.akTop, TAnchorKind.akRight];
   Button2.Anchors := [TAnchorKind.akTop, TAnchorKind.akRight];
+  Button3.Anchors := [TAnchorKind.akTop, TAnchorKind.akRight];
   Button1.Position.X := MainForm.Width - Button1.Width - 10;
   Button2.Position.X := MainForm.Width - Button2.Width - 10;
+  Button3.Position.X := MainForm.Width - Button3.Width - 10;
 
 
 
@@ -174,15 +177,15 @@ begin
     // Test odczytu ustawienia
     ShowMessage('Aktualny jêzyk: ' + TAppSettings.Instance.GetSetting('Language', 'EN'));
 
-    // Za³adowanie tabeli
-    //DatabaseManager.LoadProducts(StringGrid1);
 
-    // Konfiguracja StringGrid
-    StringGrid1.OnViewportPositionChange := StringGrid1ViewportPositionChange;
-    StringGrid1.RowCount := 0; // Start bez wierszy
+
+
 
     // Za³aduj pierwsz¹ partiê danych
-    DatabaseManager.LoadProductsLazy(StringGrid1, 50);
+    DatabaseManager.LoadProducts(StringGrid1);
+
+
+
 
 
   except
@@ -363,7 +366,7 @@ end;
 
 
 
-
+(*  *)
 function TMainForm.CalcValue(): Real;
 var
   L, Fi, factorL, factorFi: Real;
@@ -424,10 +427,11 @@ end;
 procedure TMainForm.StringGrid1ViewportPositionChange(Sender: TObject; const OldViewportPosition, NewViewportPosition: TPointF; const ContentSizeChanged: Boolean);
 begin
   // Sprawdzenie, czy u¿ytkownik przewin¹³ na sam dó³
-  if (NewViewportPosition.Y + StringGrid1.Height >= StringGrid1.ContentBounds.Height) then
-  begin
-    DatabaseManager.LoadProductsLazy(StringGrid1, 25); // Za³aduj kolejne 50 rekordów
-  end;
+ // if (NewViewportPosition.Y + StringGrid1.Height >= StringGrid1.ContentBounds.Height) then
+//  begin
+    //DatabaseManager.LoadProductsLazy(StringGrid1, 25); // Za³aduj kolejne 50 rekordów
+ //   DatabaseManager.LoadProducts(StringGrid1); // Za³aduj kolejne 50 rekordów
+//  end;
 end;
 
 
