@@ -43,6 +43,35 @@ type
   end;
 
 
+
+const
+  ColumnDefinitions: array[0..10] of record
+    FieldName: string;   // Nazwa pola w bazie danych
+    DisplayName: string; // Przyjazna nazwa kolumny
+    Width: Single;       // Szerokoœæ kolumny
+    Visible: Boolean;    // Czy kolumna ma byæ widoczna
+    UnitName: string;    // Dodawana jednostka
+  end =
+  (
+    (FieldName: 'id';         DisplayName: 'ID';        Width: 40;  Visible: True;   UnitName: ''),
+    (FieldName: 'timestamp';  DisplayName: 'Data';      Width: 100; Visible: False;  UnitName: ''),
+    (FieldName: 'length';     DisplayName: 'D³ugoœæ';   Width: 100; Visible: True;   UnitName: 'm'),
+    (FieldName: 'diameter';   DisplayName: 'Œrednica';  Width: 100; Visible: True;   UnitName: 'cm'),
+    (FieldName: 'width';      DisplayName: 'Szerokoœæ'; Width: 100; Visible: False;  UnitName: 'cm'),
+    (FieldName: 'height';     DisplayName: 'Wysokoœæ';  Width: 100; Visible: False;  UnitName: 'cm'),
+    (FieldName: 'quantity';   DisplayName: 'Iloœæ';     Width: 80;  Visible: False;  UnitName: 'x'),
+    (FieldName: 'volume';     DisplayName: 'Objêtoœæ';  Width: 100; Visible: True;   UnitName: 'm' + Chr(179);),
+    (FieldName: 'pack_id';    DisplayName: 'ID Paczki'; Width: 100; Visible: False;  UnitName: ''),
+    (FieldName: 'tree_id';    DisplayName: 'ID Drzewa'; Width: 100; Visible: False;  UnitName: ''),
+    (FieldName: 'quality_id'; DisplayName: 'Jakoœæ';    Width: 100; Visible: False;  UnitName: '')
+  );
+
+
+
+
+
+
+
 implementation
 
 { TDatabaseManager }
@@ -176,48 +205,64 @@ end;
 (* £adowanie listy produktów do tabeli *)
 procedure TDatabaseManager.LoadProducts(Grid: TStringGrid);
 var
-  i, j: Integer;
+  i, j, ColIndex: Integer;
   Field: TField;
   Col: TStringColumn;
-
 begin
   try
-      try
-          FQuery.SQL.Text := 'SELECT * FROM Product ORDER BY timestamp DESC LIMIT 500;';
-          FQuery.Open;
+    try
+      // Konfiguracja FireDAC
+      FQuery.FetchOptions.RecordCountMode := cmTotal;
 
-          // Usuniêcie istniej¹cych kolumn
-          Grid.ClearColumns;
+      // Zapytanie SQL
+      FQuery.SQL.Text := 'SELECT id, timestamp, length, diameter, width, height, ' +
+                         'quantity, volume, pack_id, tree_id, quality_id ' +
+                         'FROM Product ORDER BY timestamp DESC LIMIT 500;';
+      FQuery.Open;
 
-          // Tworzenie kolumn na podstawie pól zapytania
-          for j := 0 to FQuery.FieldCount -1 do
-            begin
-              Col := TStringColumn.Create(Grid);
-              Col.Header := FQuery.Fields[j].FieldName; // Nazwa kolumny
-              Grid.AddObject(Col);
-            end;
+      // Usuniêcie istniej¹cych kolumn
+      Grid.ClearColumns;
 
-          // Ustawienie liczby wierszy
-          Grid.RowCount := FQuery.RecordCount + 1; // Nag³ówek + dane
-
-          // Wype³nianie danych
-          i := 0; // Pierwszy wiersz na dane, zerowy na nag³ówki
-          while not FQuery.Eof do
-            begin
-                for j := 0 to FQuery.FieldCount -1 do
-                begin
-                  Field := FQuery.Fields[j];
-                  Grid.Cells[j, i] := Field.AsString; // Wype³nienie komórki
-                end;
-                Inc(i);
-                FQuery.Next;
-            end;
-          FQuery.Close;
-
-      except
-          on E: Exception do
-            ShowMessage('B³¹d podczas ³adowania produktów: ' + E.Message);
+      // Tworzenie kolumn na podstawie ustawieñ
+      ColIndex := 0; // Numer kolumny w TStringGrid
+      for j := Low(ColumnDefinitions) to High(ColumnDefinitions) do
+      begin
+        if ColumnDefinitions[j].Visible then // Sprawdzenie widocznoœci kolumny
+        begin
+          Col := TStringColumn.Create(Grid);
+          Col.Header := ColumnDefinitions[j].DisplayName; // Przyjazna nazwa
+          Col.Width := ColumnDefinitions[j].Width;        // Szerokoœæ
+          Grid.AddObject(Col);
+          Inc(ColIndex); // Zwiêkszenie indeksu kolumny tylko dla widocznych
+        end;
       end;
+
+      // Ustawienie liczby wierszy
+      Grid.RowCount := FQuery.RecordCount + 1;
+
+      // Wype³nianie danych
+      i := 0;
+      while not FQuery.Eof do
+      begin
+        ColIndex := 0; // Numer kolumny w TStringGrid
+        for j := Low(ColumnDefinitions) to High(ColumnDefinitions) do
+        begin
+          if ColumnDefinitions[j].Visible then // Sprawdzenie widocznoœci kolumny
+          begin
+            Field := FQuery.FieldByName(ColumnDefinitions[j].FieldName);
+            Grid.Cells[ColIndex, i] := Field.AsString + ' ' + ColumnDefinitions[j].UnitName; // Wype³nienie danych
+            Inc(ColIndex); // Przesuniêcie tylko dla widocznych kolumn
+          end;
+        end;
+        Inc(i);
+        FQuery.Next;
+      end;
+      FQuery.Close;
+
+    except
+      on E: Exception do
+        ShowMessage('B³¹d podczas ³adowania produktów: ' + E.Message);
+    end;
 
   finally
     FQuery.Close; // Zamykanie bez wzglêdu na wynik
@@ -285,9 +330,6 @@ begin
       ShowMessage('B³¹d podczas ³adowania produktów: ' + E.Message);
   end;
 end;
-
-
-
 
 
 
